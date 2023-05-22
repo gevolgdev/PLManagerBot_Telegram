@@ -1,8 +1,21 @@
-const express = require('express');
-const app = express();
-const port = 3001;
+require('dotenv').config();
+const { Telegraf } = require('telegraf');
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
-
-app.listen(port, () => {
-  console.log(`Server running in ${port} port`);
+bot.start((ctx) => {
+  ctx.reply(
+    'Como posso ajudar?',
+    {
+      reply_markup: {
+        k4eyboard: [
+          ['Fazer corre'],
+          ['Fumar um'],
+          ['Dar um rolê'],
+        ],
+        resize_keyboard: true
+      }
+    }
+  );
 });
+
+bot.launch();
